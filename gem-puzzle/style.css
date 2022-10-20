@@ -1,0 +1,54 @@
+html {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+*,
+*:after,
+*:before {
+    box-sizing: inherit;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin: 0;
+    background: url(./assets/background2.jpg);
+}
+
+.container {
+    position: absolute;
+    top: 20%;
+    left: 35%;
+    display: flex;
+    align-items: center;
+    margin: auto;
+    background-color: #4456f4;
+}
+
+.box {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 500px;
+    height: 500px;
+    border: 2px solid #111f9c;
+}
+
+.cell3 {
+    width: 33.33%;
+    height: 33.33%;
+    background-color: #dee5e6;
+    border: 2px solid #111f9c;
+    border-radius: 5px;
+}
+
+.params {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
