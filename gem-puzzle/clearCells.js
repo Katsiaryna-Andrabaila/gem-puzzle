@@ -1,7 +1,10 @@
 export function clearCells() {
     let cells = document.querySelectorAll('.cell3');
+    let box = document.querySelector('.box');
+    box.classList.remove('win');
 
     for (let i = 0; i < cells.length; i++) {
+        cells[i].classList.remove('win');
         cells[i].classList.remove('hidden');
         cells[i].classList.remove('left-move');
         cells[i].classList.remove('right-move');

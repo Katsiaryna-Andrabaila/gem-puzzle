@@ -36,10 +36,6 @@ body {
     border: 2px solid #111f9c;
 }
 
-.box.win {
-    border: 2px solid #ffd700;
-}
-
 .cell3 {
     display: flex;
     justify-content: center;
@@ -80,7 +76,7 @@ body {
     visibility: hidden;
 }
 
-.cell3.win {
+.win {
     border: 2px solid #ffd700;
 }
 
@@ -197,4 +193,15 @@ body {
 
 .sound-btn.sound-off:hover {
     background: url(./assets/sound-off-icon.png) center center no-repeat, linear-gradient(180deg, #73a2ed 1.49%, #dee5e6 101.44%);
+}
+
+
+
+/**************************************************************** TABLET *******************************************************************/
+
+@media (max-width: 840px) {
+
+    .container {
+        flex-direction: column;
+    }
 }

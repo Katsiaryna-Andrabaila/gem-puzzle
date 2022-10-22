@@ -17,13 +17,12 @@ function startGame() {
 
     let cells = document.querySelectorAll('.cell3');
     for (let i = 0; i < cells.length; i++) {
-        var animationSpeed = 600;
-        var disabledClick  = false;
         cells[i].addEventListener('click', moveCell);
     }
 
     const timer = params.appendChild(document.createElement('div'));
     timer.classList.add('timer');
+    timer.innerHTML = '0:00';
 
     const movesCounter = params.appendChild(document.createElement('div'));
     movesCounter.classList.add('moves-counter');

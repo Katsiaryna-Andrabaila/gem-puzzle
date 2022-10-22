@@ -3,9 +3,10 @@ import {getDirection} from './getDirection.js';
 import {reloadBox} from './reloadBox.js';
 import { getNextStepMatrix } from "./getNextStepMatrix.js";
 import { clearCells } from "./clearCells.js";
+import {getCongratulations} from './getCongratulations.js';
 
 export function moveCell(event) {
-    const cells = document.querySelectorAll('.cell3');
+    let cells = document.querySelectorAll('.cell3');
     let mixedNumbers = [];
     let targetCell;
     for (let j = 0; j < cells.length; j++) {
@@ -32,4 +33,6 @@ export function moveCell(event) {
 
         reloadBox(newMatrix);
     }), 300)
+
+    getCongratulations();
 }
