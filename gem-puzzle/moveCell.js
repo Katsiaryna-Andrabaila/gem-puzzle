@@ -9,7 +9,23 @@ import { getSound } from "./getSound.js";
 
 export function moveCell(event) {
     getMoves();
-    let cells = document.querySelectorAll('.cell3');
+
+    let box = document.querySelector('.box');
+    let cells;
+    if (box.childNodes.length === 9) {
+        cells = document.querySelectorAll('.cell3');
+    } else if (box.childNodes.length === 16) {
+        cells = document.querySelectorAll('.cell4');
+    } else if (box.childNodes.length === 25) {
+        cells = document.querySelectorAll('.cell5');
+    } else if (box.childNodes.length === 36) {
+        cells = document.querySelectorAll('.cell6');
+    } else if (box.childNodes.length === 49) {
+        cells = document.querySelectorAll('.cell7');
+    } else if (box.childNodes.length === 64) {
+        cells = document.querySelectorAll('.cell8');
+    }
+
     let mixedNumbers = [];
     let targetCell;
     for (let j = 0; j < cells.length; j++) {
@@ -34,9 +50,9 @@ export function moveCell(event) {
         const newMatrix = getNextStepMatrix(matrix, targetCellValue);
 
         clearCells();
-
+        
         reloadBox(newMatrix);
-    }), 250)
+    }), 100)
 
     getCongratulations();
 }

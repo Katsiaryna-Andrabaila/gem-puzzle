@@ -1,12 +1,8 @@
-let seconds = 0;
-let minutes = 0;
-let hours = 0;
-
 export function runTimer() {
-    setInterval(getTime, 1000);
-
-    function getTime() {
         let timer = document.querySelector('.timer');
+        let seconds = timer.textContent.slice(2);
+        let minutes = timer.textContent[0];
+        let hours = 0;
         seconds++;
         if (seconds >= 60) {
             minutes++;
@@ -37,5 +33,4 @@ export function runTimer() {
                 }
             }
         }
-    }
 }
