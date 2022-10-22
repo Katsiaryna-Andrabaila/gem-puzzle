@@ -4,8 +4,10 @@ import {reloadBox} from './reloadBox.js';
 import { getNextStepMatrix } from "./getNextStepMatrix.js";
 import { clearCells } from "./clearCells.js";
 import {getCongratulations} from './getCongratulations.js';
+import { getMoves } from "./getMoves.js";
 
 export function moveCell(event) {
+    getMoves();
     let cells = document.querySelectorAll('.cell3');
     let mixedNumbers = [];
     let targetCell;

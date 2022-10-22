@@ -7,13 +7,13 @@ export function getCongratulations() {
 
     if (cells[cells.length - 1].textContent === '0') {
         for (let i = 0; i < cells.length - 1; i++) {
-            console.log(cells[i].textContent, cells[i + 1].textContent - 1);
+            //console.log(cells[i].textContent, cells[i + 1].textContent - 1);
             if (cells[i].textContent === cells[i + 1].textContent - 1) {
                 cells[i].classList.add('win');
                 box.classList.add('win');
                 message = `Hooray! You solved the puzzle in ${timer.innerHTML} and ${moves.innerHTML(slice(7))} moves!`;
+                alert(message);
             }
         }
-        alert(message);
     }
 }
