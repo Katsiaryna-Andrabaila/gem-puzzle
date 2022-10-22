@@ -172,14 +172,14 @@ body {
     height: 40px;
     border-radius: 10px;
     border-bottom: 4px solid #111f9c;
-    background: url(./assets/sound-on-icon.png) center center no-repeat, linear-gradient(180deg, #dee5e6 1.49%, #73a2ed 101.44%);
+    background: url(./assets/sound-on-icon.svg) center center no-repeat, linear-gradient(180deg, #dee5e6 1.49%, #73a2ed 101.44%);
     box-shadow: inset 1px 1px 0 #73a2ed;
     cursor: pointer;
     margin: 10px 0;
 }
 
 .sound-btn:hover {
-    background: url(./assets/sound-on-icon.png) center center no-repeat, linear-gradient(180deg, #73a2ed 1.49%, #dee5e6 101.44%);
+    background: url(./assets/sound-on-icon.svg) center center no-repeat, linear-gradient(180deg, #73a2ed 1.49%, #dee5e6 101.44%);
 }
 
 .sound-btn:active {
@@ -187,12 +187,12 @@ body {
     bottom: -4px;
 }
 
-.sound-btn.sound-off {
-    background: url(./assets/sound-off-icon.png) center center no-repeat, linear-gradient(180deg, #dee5e6 1.49%, #73a2ed 101.44%);
+.sound-off {
+    background: url(./assets/sound-off-icon.svg) center center no-repeat, linear-gradient(180deg, #dee5e6 1.49%, #73a2ed 101.44%);
 }
 
-.sound-btn.sound-off:hover {
-    background: url(./assets/sound-off-icon.png) center center no-repeat, linear-gradient(180deg, #73a2ed 1.49%, #dee5e6 101.44%);
+.sound-off:hover {
+    background: url(./assets/sound-off-icon.svg) center center no-repeat, linear-gradient(180deg, #73a2ed 1.49%, #dee5e6 101.44%);
 }
 
 

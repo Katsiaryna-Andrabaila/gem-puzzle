@@ -5,6 +5,7 @@ import { getNextStepMatrix } from "./getNextStepMatrix.js";
 import { clearCells } from "./clearCells.js";
 import {getCongratulations} from './getCongratulations.js';
 import { getMoves } from "./getMoves.js";
+import { getSound } from "./getSound.js";
 
 export function moveCell(event) {
     getMoves();
@@ -26,6 +27,7 @@ export function moveCell(event) {
 
     if (direction) {
         targetCell.classList.add(direction);
+        getSound();
     }
     
     setTimeout((function() {
@@ -34,7 +36,7 @@ export function moveCell(event) {
         clearCells();
 
         reloadBox(newMatrix);
-    }), 300)
+    }), 250)
 
     getCongratulations();
 }

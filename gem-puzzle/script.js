@@ -1,9 +1,14 @@
 /***************************************************** BASIC GAME 3 X 3 **********************************************************/
 import {startNewGame} from './startNewGame.js';
 import {moveCell} from './moveCell.js';
+import {turnOffSound} from './turnOffSound.js';
 
 function startGame() {
     const container = document.body.appendChild(document.createElement('div'));
+
+    const audio = document.body.appendChild(document.createElement('audio'));
+    audio.src = 'assets/sound.mp3';
+    
     const box = container.appendChild(document.createElement('div'));
     const params = container.appendChild(document.createElement('div'));
 
@@ -52,6 +57,7 @@ function startGame() {
 
     const soundBtn = saveAndSound.appendChild(document.createElement('button'));
     soundBtn.classList.add('sound-btn');
+    soundBtn.addEventListener('click', turnOffSound);
 
     const changeBtn = params.appendChild(document.createElement('button'));
     changeBtn.classList.add('change-btn');
