@@ -1,27 +1,21 @@
-export function reloadBox(matrix, targetCellValue) {
+export function reloadBox(matrix) {
+    let newMatrix = [];
     for (let i = 0; i < matrix.length; i++) {
+        newMatrix.push([]);
         for (let j = 0; j < matrix[i].length; j++) {
-            console.log()
-            if (matrix[i][j] === targetCellValue) {
-                if (matrix[i][j - 1] === '0') {
-                    [matrix[i][j], matrix[i][j - 1]] = [matrix[i][j - 1], matrix[i][j]];
-                }
-                if (matrix[i][j + 1] === '0') {
-                    [matrix[i][j], matrix[i][j + 1]] = [matrix[i][j + 1], matrix[i][j]];
-                }
-                if (matrix[i + 1]) {
-                    if (matrix[i + 1][j] === '0') {
-                        [matrix[i + 1][j], matrix[i][j]] = [matrix[i][j], matrix[i + 1][j]];
-                    }
-                }
-                if (matrix[i - 1]) {
-                    if (matrix[i - 1][j] === '0') {
-                        [matrix[i - 1][j], matrix[i][j]] = [matrix[i][j], matrix[i - 1][j]];
-                    }
-                }
-            }
+            newMatrix[i].push(matrix[i][j]);
         }
     }
-    console.log(matrix);
-    return matrix;
+
+    const cells = document.querySelectorAll('.cell3');
+
+    let arr = newMatrix.flat();
+    for (let i = 0; i < cells.length; i++) {
+        cells[i].textContent = arr[i];
+        if (cells[i].textContent === '0') {
+            cells[i].classList.add('hidden');
+        } else {
+            cells[i].classList.remove('hidden');
+        }
+    }
 }

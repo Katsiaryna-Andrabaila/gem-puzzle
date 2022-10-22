@@ -60,23 +60,23 @@ body {
     background-color: #f7fafb;
 }
 
-.cell3.left-move {
+.left-move {
     transform: translateX(-100%);
 }
 
-.cell3.right-move {
+.right-move {
     transform: translateX(100%);
 }
 
-.cell3.up-move {
+.up-move {
     transform: translateY(-100%);
 }
 
-.cell3.down-move {
+.down-move {
     transform: translateY(100%);
 }
 
-.cell3.hidden {
+.hidden {
     visibility: hidden;
 }
 

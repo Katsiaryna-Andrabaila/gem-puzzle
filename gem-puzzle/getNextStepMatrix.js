@@ -8,32 +8,41 @@ export function getNextStepMatrix(matrix, targetCellValue) {
         }
     }
 
-    console.log(matrix);
-    console.log(targetCellValue);
-
     for (let i = 0; i < newMatrix.length; i++) {
         for (let j = 0; j < newMatrix[i].length; j++) {
-        
-            if (newMatrix[i][j] === targetCellValue) {
-                if (newMatrix[i][j - 1] === '0') {
-                    newMatrix[i][j] = newMatrix[i][j - 1], newMatrix[i][j - 1] = newMatrix[i][j];
+            if (newMatrix[i][j] == targetCellValue) {
+
+                if (newMatrix[i][j - 1] == '0') {
+                    let temp = newMatrix[i][j];
+                    newMatrix[i][j] = '0';
+                    newMatrix[i][j - 1] = temp;
+                    return newMatrix;
                 }
-                if (newMatrix[i][j + 1] === '0') {
-                    newMatrix[i][j] = newMatrix[i][j + 1], newMatrix[i][j + 1] = newMatrix[i][j];
+                if (newMatrix[i][j + 1] == '0') {
+                    let temp = newMatrix[i][j];
+                    newMatrix[i][j] = '0';
+                    newMatrix[i][j + 1] = temp;
+                    return newMatrix;
                 }
                 if (newMatrix[i + 1]) {
-                    if (newMatrix[i + 1][j] === '0') {
-                        newMatrix[i + 1][j] = newMatrix[i][j], newMatrix[i][j] = newMatrix[i + 1][j];
+                    if (newMatrix[i + 1][j] == '0') {
+                        let temp = newMatrix[i][j];
+                        newMatrix[i][j] = '0';
+                        newMatrix[i + 1][j] = temp;
+                        return newMatrix;
                     }
                 }
                 if (newMatrix[i - 1]) {
-                    if (newMatrix[i - 1][j] === '0') {
-                        newMatrix[i - 1][j] = newMatrix[i][j], newMatrix[i][j] = newMatrix[i - 1][j];
+                    if (newMatrix[i - 1][j] == '0') {
+                        let temp = newMatrix[i][j];
+                        newMatrix[i][j] = '0';
+                        newMatrix[i - 1][j] = temp;
+                        return newMatrix;
                     }
                 }
             }
         }
     }
-    console.log(newMatrix);
+
     return newMatrix;
 }

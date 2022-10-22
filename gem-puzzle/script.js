@@ -17,6 +17,8 @@ function startGame() {
 
     let cells = document.querySelectorAll('.cell3');
     for (let i = 0; i < cells.length; i++) {
+        var animationSpeed = 600;
+        var disabledClick  = false;
         cells[i].addEventListener('click', moveCell);
     }
 
