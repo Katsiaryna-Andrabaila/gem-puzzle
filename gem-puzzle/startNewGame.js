@@ -2,6 +2,7 @@ import {makeNumbersArr} from './makeNumbersArr.js';
 import { mixNumbers } from './mixNumbers.js';
 import {clearCells} from './clearCells.js';
 import {runTimer} from './runTimer.js';
+import { moveCell } from './moveCell.js';
 
 export function startNewGame() {
     let movesCounter = document.querySelector('.moves-counter');
@@ -34,6 +35,10 @@ export function startNewGame() {
         cells = document.querySelectorAll('.cell7');
     } else if (box.childNodes.length === 64) {
         cells = document.querySelectorAll('.cell8');
+    }
+
+    for (let i = 0; i < cells.length; i++) {
+        cells[i].addEventListener('click', moveCell);
     }
 
     for (let i = 0; i < cells.length; i++) {

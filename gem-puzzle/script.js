@@ -18,7 +18,7 @@ function startGame() {
     box.classList.add('box');
     params.classList.add('params');
 
-    getBox(16);
+    
 
     let cells;
     if (box.childNodes.length === 9) {
@@ -35,9 +35,7 @@ function startGame() {
         cells = document.querySelectorAll('.cell8');
     }
 
-    for (let i = 0; i < cells.length; i++) {
-        cells[i].addEventListener('click', moveCell);
-    }
+    
 
     const timer = params.appendChild(document.createElement('div'));
     timer.classList.add('timer');
@@ -126,3 +124,4 @@ function startGame() {
 
 startGame();
 
+getBox(16);
