@@ -1,4 +1,4 @@
-export function getCongratulations() {
+export function getCongratulations(newMatrix) {
     let box = document.querySelector('.box');
     let cells;
 
@@ -19,16 +19,28 @@ export function getCongratulations() {
     let message = '';
     let timer = document.querySelector('.timer');
     let moves = document.querySelector('.moves-counter');
+    let numbers = newMatrix.flat();
 
-    if (cells[cells.length - 1].textContent === '0') {
+    let sortedNumbers = [];
+    for (let i = 0; i < numbers.length; i++) {
+        sortedNumbers.push(numbers[i]);
+    }
+
+    sortedNumbers.sort((a, b) => a - b);
+    sortedNumbers.shift();
+    sortedNumbers.push('0');
+    console.log(numbers, sortedNumbers);
+
+    if (numbers.join('') === sortedNumbers.join('')) {
         for (let i = 0; i < cells.length - 1; i++) {
-            //console.log(cells[i].textContent, cells[i + 1].textContent - 1);
-            if (cells[i].textContent === cells[i + 1].textContent - 1) {
-                cells[i].classList.add('win');
-                box.classList.add('win');
-                message = `Hooray! You solved the puzzle in ${timer.innerHTML} and ${moves.innerHTML(slice(7))} moves!`;
-                alert(message);
-            }
+            cells[i].classList.remove('left-move');
+            cells[i].classList.remove('right-move');
+            cells[i].classList.remove('up-move');
+            cells[i].classList.remove('down-move');
+            cells[i].classList.add('win');
         }
+        box.classList.add('win');
+        message = `Hooray! You solved the puzzle in ${timer.innerHTML} and ${moves.innerHTML.slice(7)} moves!`;
+        alert(message);
     }
 }

@@ -1,7 +1,6 @@
 /***************************************************** BASIC GAME 3 X 3 **********************************************************/
 import {getBox} from './getBox.js';
 import {startNewGame} from './startNewGame.js';
-import {moveCell} from './moveCell.js';
 import {turnOffSound} from './turnOffSound.js';
 import {changeSize} from './changeSize.js';
 
@@ -17,8 +16,6 @@ function startGame() {
     container.classList.add('container');
     box.classList.add('box');
     params.classList.add('params');
-
-    
 
     let cells;
     if (box.childNodes.length === 9) {

@@ -118,7 +118,8 @@ body {
 }
 
 .win {
-    border: 2px solid #ffd700;
+    color: #ffd700;
+    border: 5px solid #ffd700;
 }
 
 .params {

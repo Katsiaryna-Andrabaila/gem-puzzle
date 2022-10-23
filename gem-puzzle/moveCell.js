@@ -8,8 +8,6 @@ import { getMoves } from "./getMoves.js";
 import { getSound } from "./getSound.js";
 
 export function moveCell(event) {
-    getMoves();
-
     let box = document.querySelector('.box');
     let cells;
     if (box.childNodes.length === 9) {
@@ -43,6 +41,7 @@ export function moveCell(event) {
 
     if (direction) {
         targetCell.classList.add(direction);
+        getMoves();
         getSound();
     }
     
@@ -52,7 +51,7 @@ export function moveCell(event) {
         clearCells();
         
         reloadBox(newMatrix);
-    }), 100)
 
-    getCongratulations();
+        getCongratulations(newMatrix);
+    }), 100)
 }
