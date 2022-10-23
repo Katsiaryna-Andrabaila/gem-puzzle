@@ -29,7 +29,6 @@ export function getCongratulations(newMatrix) {
     sortedNumbers.sort((a, b) => a - b);
     sortedNumbers.shift();
     sortedNumbers.push('0');
-    console.log(numbers, sortedNumbers);
 
     if (numbers.join('') === sortedNumbers.join('')) {
         for (let i = 0; i < cells.length - 1; i++) {
