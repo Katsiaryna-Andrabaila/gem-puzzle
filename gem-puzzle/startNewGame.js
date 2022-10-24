@@ -4,7 +4,6 @@ import {clearCells} from './clearCells.js';
 import {runTimer} from './runTimer.js';
 import { moveCell } from './moveCell.js';
 import {dragCell} from './dragCell.js';
-import {getDraggable} from './getDraggable.js';
 
 export function startNewGame() {
     let movesCounter = document.querySelector('.moves-counter');
@@ -42,7 +41,7 @@ export function startNewGame() {
     let targetCell;
     for (let i = 0; i < cells.length; i++) {
         cells[i].addEventListener('click', moveCell);
-        cells[i].addEventListener('mousedown', dragCell);
+        //cells[i].addEventListener('mousedown', dragCell);
     }
 
     for (let i = 0; i < cells.length; i++) {

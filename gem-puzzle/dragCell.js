@@ -1,3 +1,10 @@
+import {makeMatrix} from "./makeMatrix.js";
+import {getDirection} from './getDirection.js';
+import {reloadBox} from './reloadBox.js';
+import { getNextStepMatrix } from "./getNextStepMatrix.js";
+import { clearCells } from "./clearCells.js";
+import {getCongratulations} from './getCongratulations.js';
+
 export function dragCell(event) {
     let box = document.querySelector('.box');
 
@@ -15,25 +22,85 @@ export function dragCell(event) {
     } else if (box.childNodes.length === 64) {
         cells = document.querySelectorAll('.cell8');
     }
-    
+
+    let mixedNumbers = [];
+    let zeroCell;
     let targetCell;
     for (let j = 0; j < cells.length; j++) {
-        if (cells[j].textContent === event.target.textContent) {
-            targetCell = cells[j];
+        mixedNumbers.push(cells[j].textContent);
+        if (cells[j].classList.contains('hidden')) zeroCell = cells[j];
+        if (cells[j].textContent === event.target.textContent) targetCell = cells[j];
+    }
+
+    console.log(zeroCell);
+    
+    /*let currentX = event.clientX - targetCell.getBoundingClientRect().left;
+    let currentY = event.clientY - targetCell.getBoundingClientRect().top;
+
+    targetCell.style.position = 'absolute';
+    targetCell.style.zIndex = 1000;
+    box.append(targetCell); */
+
+    let targetCellValue = event.target.textContent;
+
+    const matrix = makeMatrix(mixedNumbers);
+    
+    const direction = getDirection(matrix, targetCellValue);
+
+    if (direction) {
+        moveCell(direction);
+    }
+
+    zeroCell.classList.add('droppable');
+
+    function moveCell(direction) {
+        targetCell.classList.add(direction);
+    }
+
+    let currentDroppable = null;
+
+    function onMouseMove(event) {
+        moveCell(direction);
+
+        targetCell.hidden = true;
+        let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+        targetCell.hidden = false;
+
+        if (!elemBelow) return;
+
+        let droppableBelow = elemBelow.closest('.droppable');
+
+        if (currentDroppable !== droppableBelow) {
+            if (currentDroppable) {
+                leaveDroppable(currentDroppable);
+            }
+            currentDroppable = droppableBelow;
+            if (currentDroppable) {
+                enterDroppable(currentDroppable);
+            }
         }
     }
-    
-    let startX = event.pageX;
-    let startY = event.pageY;
 
-    targetCell.addEventListener('mousemove', moveCell);
+    box.addEventListener('mousemove', onMouseMove);
 
-    function moveCell(event) {
-        let currentX = event.pageX;
-        let currentY = event.pageY;
+    targetCell.addEventListener('mouseup', pushCell);
 
-        
+    function pushCell() {
+        box.removeEventListener('mousemove', onMouseMove);
+        targetCell.onmouseup = null;
     }
 
-    console.log(startX, startY);
+    targetCell.addEventListener('dragstart', function() {
+        return false;
+    })
+
+    setTimeout((function() {
+        const newMatrix = getNextStepMatrix(matrix, targetCellValue);
+
+        clearCells();
+        
+        reloadBox(newMatrix);
+
+        getCongratulations(newMatrix);
+    }), 100)
 }

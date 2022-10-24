@@ -1,8 +1,9 @@
-/***************************************************** BASIC GAME 3 X 3 **********************************************************/
 import {getBox} from './getBox.js';
 import {startNewGame} from './startNewGame.js';
 import {turnOffSound} from './turnOffSound.js';
 import {changeSize} from './changeSize.js';
+import {setLocalStorage} from './setLocalStorage.js';
+import {getLocalStorage} from './getLocalStorage.js';
 
 function startGame() {
     const container = document.body.appendChild(document.createElement('div'));
@@ -32,8 +33,6 @@ function startGame() {
         cells = document.querySelectorAll('.cell8');
     }
 
-    
-
     const timer = params.appendChild(document.createElement('div'));
     timer.classList.add('timer');
     timer.innerHTML = '0:00';
@@ -57,20 +56,29 @@ function startGame() {
     const scoreList = score.appendChild(document.createElement('ul'));
     scoreList.classList.add('score-list');
 
-    const saveAndSound = params.appendChild(document.createElement('div'));
-    saveAndSound.classList.add('save-and-sound-block');
+    const saveAndLoad = params.appendChild(document.createElement('div'));
+    saveAndLoad.classList.add('save-and-load-block');
 
-    const saveBtn = saveAndSound.appendChild(document.createElement('button'));
+    const saveBtn = saveAndLoad.appendChild(document.createElement('button'));
     saveBtn.classList.add('save-btn');
-    saveBtn.textContent = 'Save The Game';
+    saveBtn.textContent = 'Save Game';
+    saveBtn.addEventListener('click', setLocalStorage);
 
-    const soundBtn = saveAndSound.appendChild(document.createElement('button'));
-    soundBtn.classList.add('sound-btn');
-    soundBtn.addEventListener('click', turnOffSound);
+    const loadBtn = saveAndLoad.appendChild(document.createElement('button'));
+    loadBtn.classList.add('load-btn');
+    loadBtn.textContent = 'Load Saved';
+    loadBtn.addEventListener('click', getLocalStorage);
 
-    const changeSizeBtn = params.appendChild(document.createElement('button'));
+    const changeAndSound = params.appendChild(document.createElement('div'));
+    changeAndSound.classList.add('change-and-sound-block');
+    
+    const changeSizeBtn = changeAndSound.appendChild(document.createElement('button'));
     changeSizeBtn.classList.add('change-btn');
     changeSizeBtn.textContent = 'Change Size';
+
+    const soundBtn = changeAndSound.appendChild(document.createElement('button'));
+    soundBtn.classList.add('sound-btn');
+    soundBtn.addEventListener('click', turnOffSound);
 
     const sizePopup = document.body.appendChild(document.createElement('div'));
     sizePopup.classList.add('size-popup');
@@ -120,5 +128,9 @@ function startGame() {
 }
 
 startGame();
+
+window.addEventListener('beforeunload', setLocalStorage);
+
+window.addEventListener('load', getLocalStorage);
 
 getBox(16);
