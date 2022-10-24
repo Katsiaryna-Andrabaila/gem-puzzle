@@ -4,6 +4,7 @@ import {reloadBox} from './reloadBox.js';
 import { getNextStepMatrix } from "./getNextStepMatrix.js";
 import { clearCells } from "./clearCells.js";
 import {getCongratulations} from './getCongratulations.js';
+import { moveCell } from "./moveCell.js";
 
 export function dragCell(event) {
     let box = document.querySelector('.box');
@@ -32,75 +33,69 @@ export function dragCell(event) {
         if (cells[j].textContent === event.target.textContent) targetCell = cells[j];
     }
 
-    console.log(zeroCell);
-    
-    /*let currentX = event.clientX - targetCell.getBoundingClientRect().left;
-    let currentY = event.clientY - targetCell.getBoundingClientRect().top;
+    targetCell.addEventListener('mousemove', moveDragCell);
+    targetCell.addEventListener('mouseup', removeAllListeners);
+    targetCell.addEventListener('mouseleave', removeListeners);
 
-    targetCell.style.position = 'absolute';
-    targetCell.style.zIndex = 1000;
-    box.append(targetCell); */
-
+    let startX = event.clientX;
+    let startY = event.clientY;
     let targetCellValue = event.target.textContent;
 
     const matrix = makeMatrix(mixedNumbers);
-    
     const direction = getDirection(matrix, targetCellValue);
 
-    if (direction) {
-        moveCell(direction);
-    }
-
-    zeroCell.classList.add('droppable');
-
-    function moveCell(direction) {
-        targetCell.classList.add(direction);
-    }
-
-    let currentDroppable = null;
-
-    function onMouseMove(event) {
-        moveCell(direction);
-
-        targetCell.hidden = true;
-        let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
-        targetCell.hidden = false;
-
-        if (!elemBelow) return;
-
-        let droppableBelow = elemBelow.closest('.droppable');
-
-        if (currentDroppable !== droppableBelow) {
-            if (currentDroppable) {
-                leaveDroppable(currentDroppable);
-            }
-            currentDroppable = droppableBelow;
-            if (currentDroppable) {
-                enterDroppable(currentDroppable);
-            }
-        }
-    }
-
-    box.addEventListener('mousemove', onMouseMove);
-
-    targetCell.addEventListener('mouseup', pushCell);
-
-    function pushCell() {
-        box.removeEventListener('mousemove', onMouseMove);
-        targetCell.onmouseup = null;
-    }
-
-    targetCell.addEventListener('dragstart', function() {
-        return false;
-    })
-
-    setTimeout((function() {
-        const newMatrix = getNextStepMatrix(matrix, targetCellValue);
-
-        clearCells();
+    function moveDragCell(event) {
         
-        reloadBox(newMatrix);
+        //targetCell.style.transition = 'all 0s';
+        
+        let currentX = event.clientX;
+        let currentY = event.clientY;
+        let distance;
+        if (direction === 'left-move') {
+            distance = startX - currentX;
 
-        getCongratulations(newMatrix);
-    }), 100)
+            if (distance > event.target.clientHeight) {
+                distance = event.target.clientHeight + 4;
+            }
+
+            if (distance > 3) targetCell.style.transform = `translateX(-${distance}px)`;
+        }
+        if (direction === 'right-move') {
+            distance = currentX - startX;
+            if (distance > event.target.clientHeight) {
+                distance = event.target.clientHeight + 4;
+            }
+            if (distance > 3) targetCell.style.transform = `translateX(${distance}px)`;
+        }
+        if (direction === 'down-move') {
+            distance = currentY - startY;
+            if (distance > event.target.clientHeight) {
+                distance = event.target.clientHeight + 4;
+            }
+            if (distance > 3) targetCell.style.transform = `translateY(${distance}px)`;
+        }
+        if (direction === 'up-move') {
+            distance = startY - currentY;
+            if (distance > event.target.clientHeight) {
+                distance = event.target.clientHeight + 4;
+            }
+            if (distance > 3) targetCell.style.transform = `translateY(-${distance}px)`;
+        }
+
+        //targetCell.style.transition = 'all 0.3s';
+    }
+
+    function removeListeners() {
+        targetCell.removeEventListener('mousemove', moveDragCell);
+        targetCell.removeEventListener('mouseup', removeAllListeners);
+        targetCell.removeEventListener('mouseleave', removeListeners);
+        moveCell(event);
+    }
+
+    function removeAllListeners() {
+        targetCell.removeEventListener('mousemove', moveDragCell);
+        targetCell.removeEventListener('mouseleave', removeListeners);
+        targetCell.removeEventListener('mouseup', removeAllListeners);
+        moveCell(event);
+    }
 }

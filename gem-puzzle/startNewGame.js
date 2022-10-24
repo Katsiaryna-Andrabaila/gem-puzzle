@@ -40,8 +40,8 @@ export function startNewGame() {
 
     let targetCell;
     for (let i = 0; i < cells.length; i++) {
-        cells[i].addEventListener('click', moveCell);
-        //cells[i].addEventListener('mousedown', dragCell);
+        //cells[i].addEventListener('click', moveCell);
+        cells[i].addEventListener('mousedown', dragCell);
     }
 
     for (let i = 0; i < cells.length; i++) {

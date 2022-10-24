@@ -24,6 +24,7 @@ export function clearCells() {
         cells[i].classList.remove('right-move');
         cells[i].classList.remove('up-move');
         cells[i].classList.remove('down-move');
+        cells[i].style.transform = null;
         cells[i].textContent = '';
     }
 }
