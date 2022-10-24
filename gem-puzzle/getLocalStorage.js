@@ -5,12 +5,8 @@ export function getLocalStorage() {
     let movesCounter = document.querySelector('.moves-counter');
     let timer = document.querySelector('.timer');
     let box = document.querySelector('.box');
+    let scoreList = document.querySelector('.score-list');
     
-    /*let numbers = [];
-    for (let i = 0; i < cells.length; i++) {
-        numbers.push(cells[i].textContent);
-    } */
-
     if (localStorage.getItem('moves')) {
         movesCounter.innerHTML = localStorage.getItem('moves');
     }
@@ -40,8 +36,8 @@ export function getLocalStorage() {
         for (let i = 0; i < cells.length; i++) {
             cells[i].addEventListener('click', moveCell);
         }
-        
     }
-
-    
+    if (localStorage.getItem('scoreList')) {
+        scoreList.innerHTML = localStorage.getItem('scoreList');
+    }
 }

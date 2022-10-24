@@ -1,3 +1,5 @@
+import {saveResults} from './saveResults.js';
+
 export function getCongratulations(newMatrix) {
     let box = document.querySelector('.box');
     let cells;
@@ -41,5 +43,7 @@ export function getCongratulations(newMatrix) {
         box.classList.add('win');
         message = `Hooray! You solved the puzzle in ${timer.innerHTML} and ${moves.innerHTML.slice(7)} moves!`;
         alert(message);
+        
+        saveResults(numbers, timer.innerHTML, moves.innerHTML.slice(7));
     }
 }

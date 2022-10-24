@@ -53,7 +53,7 @@ function startGame() {
     scoreHeader.classList.add('score-header');
     scoreHeader.textContent = 'Score:';
 
-    const scoreList = score.appendChild(document.createElement('ul'));
+    const scoreList = score.appendChild(document.createElement('ol'));
     scoreList.classList.add('score-list');
 
     const saveAndLoad = params.appendChild(document.createElement('div'));
