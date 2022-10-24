@@ -64,29 +64,31 @@ body {
 .cell4 {
     width: 25%;
     height: 25%;
+    font-size: 50px;
 }
 
 .cell5 {
     width: 20%;
     height: 20%;
+    font-size: 40px;
 }
 
 .cell6 {
     width: 16.667%;
     height: 16.667%;
-    font-size: 40px;
+    font-size: 35px;
 }
 
 .cell7 {
     width: 14.285%;
     height: 14.285%;
-    font-size: 40px;
+    font-size: 30px;
 }
 
 .cell8 {
     width: 12.5%;
     height: 12.5%;
-    font-size: 40px;
+    font-size: 20px;
 }
 
 .cell3:hover,
@@ -117,10 +119,6 @@ body {
 .hidden {
     visibility: hidden;
 }
-
-/* .droppable {
-    background-color: rgba(238, 229, 229, 0.5);
-} */
 
 .win {
     color: #ffd700;
